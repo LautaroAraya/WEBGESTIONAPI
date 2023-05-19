@@ -27,8 +27,3 @@ p{
     font-weight: bold;
     margin-bottom: 5px;
 }
-.contenedorPeliculas{
-    display: flex;
-    justify-self: center;
-}
-
