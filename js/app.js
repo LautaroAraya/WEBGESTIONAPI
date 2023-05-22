@@ -22,7 +22,7 @@ const movies = {
     },
     agregarNuevaPelicula:() => {
       const urlAPI = 'https://pracprof2023-af4f.restdb.io/rest/peliculas?apikey=6467b09a0b60fc42f4e197fa';
-      const nuevaPeli = {"nombre":"Matrix","genero":"Ciencia Ficción/Acción","duracion":136,"trailer_url":"https://www.youtube.com/watch?v=OM0tSTEQCQA","sinopsis":"The Matrix (conocida como Matrix en Hispanoamérica) es una película de acción y ciencia ficción de 1999 escrita y dirigida por las hermanas Wachowski y protagonizada por Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss y Hugo Weaving. Representa un futuro distópico en el que la humanidad está atrapada sin saberlo dentro de una realidad simulada llamada Matrix, que las máquinas inteligentes han creado para distraer a los humanos mientras usan sus cuerpos como fuente de energía en campos de cultivo","portada_url":"https://pics.filmaffinity.com/Matrix-374933715-large.jpg"};
+      const nuevaPeli = {"nombre":"John Wick","genero":"Acción/Aventura/Suspenso","duracion":101,"trailer_url":"https://www.youtube.com/watch?v=C0BMx-qxsP4","sinopsis":"John Wick es una franquicia estadounidense de suspenso y acción neo-noir creada por Derek Kolstad y producidas por Lionsgate a través de Summit Entertainment. La franquicia esta centrada en John Wick, un ex asesino a sueldo que se ve obligado a regresar al inframundo criminal que había abandonado anteriormente","portada_url":"https://hips.hearstapps.com/es.h-cdn.co/fotoes/images/peliculas/john-wick-pacto-de-sangre/120113874-1-esl-ES/John-Wick-Pacto-de-sangre.png"};
       fetch(urlAPI, {
       method: 'POST',
       headers: {
