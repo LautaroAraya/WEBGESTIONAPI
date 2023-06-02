@@ -20,7 +20,9 @@ const movies = {
                   <a href="${peli.trailer_url}" target="_blank">
                     <img src="${peli.portada_url}" alt="${peli.nombre}" class="img-thumbnail">
                   </a>
-                  <h3 class="title">${peli.nombre}</h3>
+                  <h3 class="title">${peli.nombre}
+                  <a href="#" onClick="movies.eliminarPelicula();">Eliminar</a>
+                  </h3>
               </div>`;
           }
           divContenedorPeliculas.innerHTML = contenidoHTML;
@@ -39,6 +41,9 @@ const movies = {
       .then(response => {
         return movies.obtenerTodos();
       });
+    },
+    eliminarPelicula:() =>{
+      alert("Probando Borrar");
     }
   };
   movies.obtenerTodos();
