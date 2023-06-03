@@ -21,7 +21,7 @@ const movies = {
                     <img src="${peli.portada_url}" alt="${peli.nombre}" class="img-thumbnail">
                   </a>
                   <h3 class="title">${peli.nombre}
-                  <a href="#" onClick="movies.eliminarPelicula();">Eliminar</a>
+                  <a href="#" onClick="movies.eliminarPelicula('${peli._id}');">Eliminar</a>
                   </h3>
               </div>`;
           }
@@ -42,8 +42,14 @@ const movies = {
         return movies.obtenerTodos();
       });
     },
-    eliminarPelicula:() =>{
-      alert("Probando Borrar");
+    eliminarPelicula:(idPeliculaBorrar) =>{
+      const urlAPI = `https://pracprof2023-af4f.restdb.io/rest/peliculas/${idPeliculaBorrar}?apikey=6467b09a0b60fc42f4e197fa`
+      fetch(urlAPI, {
+        method: 'DELETE'
+      })
+      .then(response => {
+        return movies.obtenerTodos();
+      });
     }
   };
   movies.obtenerTodos();
