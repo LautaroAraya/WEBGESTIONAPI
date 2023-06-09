@@ -31,7 +31,20 @@ const movies = {
     },
     agregarNuevaPelicula:() => {
       const urlAPI = 'https://pracprof2023-af4f.restdb.io/rest/peliculas?apikey=6467b09a0b60fc42f4e197fa';
-      const nuevaPeli = {"nombre":"Guardianes de la Galaxia","genero":"Ciencia Ficción/Cine de SuperHéroes","duracion":122,"trailer_url":"hhttps://www.youtube.com/watch?v=qdIuXCfUKM8&pp=ygUgdHJhaWxlciBndWFyZGlhbmVzIGRlIGxhIGdhbGF4aWE%3D","sinopsis":"Un aventurero espacial se convierte en la presa de unos cazadores de tesoros después de robar el orbe de un villano traicionero. Cuando descubre su poder, debe hallar la forma de unir a unos rivales para salvar al universo.","portada_url":"https://es.web.img3.acsta.net/pictures/14/06/17/14/04/353959.jpg"};
+      
+      const txtNombre=document.getElementById
+      ("#txtNombre")
+      const txtGenero=document.getElementById
+      ("#txtGenero")
+      const txtDuracion=document.getElementById
+      ("#txtDuracion")
+      const txtTrailer_url=document.getElementById
+      ("#txtTrailerURL")
+      const txtSinopsis=document.getElementById
+      ("#txtSinopsis")
+      const txtPortada_url=document.getElementById
+      ("#txtPortadaURL")
+      const nuevaPeli = {"nombre": txtNombre,"genero":txtGenero,"duracion":txtDuracion,"trailer_url": txtTrailer_url,"sinopsis":txtSinopsis,"portada_url":txtPortada_url};
       fetch(urlAPI, {
       method: 'POST',
       headers: {
