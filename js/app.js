@@ -20,9 +20,10 @@ const movies = {
                   <a href="${peli.trailer_url}" target="_blank">
                     <img src="${peli.portada_url}" alt="${peli.nombre}" class="img-thumbnail">
                   </a>
-                  <h3 class="title">${peli.nombre}
-                  <a href="#" onClick="movies.eliminarPelicula('${peli._id}');">Eliminar</a>
-                  </h3>
+                  <details class="title"><summary>${peli.nombre}</summary>
+                  <p>${peli.sinopsis}</p>
+                  <a href="#" onClick="movies.eliminarPelicula('${peli._id}','${peli.nombre}');">Eliminar</a>
+                  </details>
               </div>`;
           }
           divContenedorPeliculas.innerHTML = contenidoHTML;
@@ -42,14 +43,32 @@ const movies = {
         return movies.obtenerTodos();
       });
     },
-    eliminarPelicula:(idPeliculaBorrar) =>{
-      const urlAPI = `https://pracprof2023-af4f.restdb.io/rest/peliculas/${idPeliculaBorrar}?apikey=6467b09a0b60fc42f4e197fa`
-      fetch(urlAPI, {
-        method: 'DELETE'
+    eliminarPelicula:(idPeliculaBorrar,nombrePeliculaBorrar) =>{
+      //alert(`Borrando la pelicula: ${nombrePeliculaBorrar}`);
+      Swal.fire({
+        title: `Esta seguro que desea eliminar a ${nombrePeliculaBorrar}?`,
+        text: "¡No se podrás revertir esto!",
+        icon: 'Advertencia',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si quiero hacerlo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const urlAPI = `https://pracprof2023-af4f.restdb.io/rest/peliculas/${idPeliculaBorrar}?apikey=6467b09a0b60fc42f4e197fa`
+          fetch(urlAPI, {
+            method: 'DELETE'
+          })
+          .then(response => {
+            return movies.obtenerTodos();
+          });
+          Swal.fire(
+            'Borrado!',
+            `La pelicula: ${nombrePeliculaBorrar} fue borrada.`,
+            'Exito'
+          )
+        }
       })
-      .then(response => {
-        return movies.obtenerTodos();
-      });
     }
   };
   movies.obtenerTodos();
