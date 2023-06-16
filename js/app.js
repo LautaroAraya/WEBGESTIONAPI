@@ -16,7 +16,7 @@ const movies = {
           //recorremos la coleccion de peliculas obtenienidas, obteniendo una referencia para cada una de las constantes "peli", por cada iteración 
           for (const peli of datos) {
             contenidoHTML += `
-              <div class="col-md-4">
+              <div>
                   <a href="${peli.trailer_url}" target="_blank">
                     <img src="${peli.portada_url}" alt="${peli.nombre}" class="img-thumbnail">
                   </a>
@@ -39,7 +39,7 @@ const movies = {
       const txtDuracion=document.getElementById
       ("#txtDuracion")
       const txtTrailer_url=document.getElementById
-      ("#txtTrailerURL")
+      ("#txttrailer_url")
       const txtSinopsis=document.getElementById
       ("#txtSinopsis")
       const txtPortada_url=document.getElementById
