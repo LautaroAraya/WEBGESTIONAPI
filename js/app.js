@@ -3,6 +3,7 @@ const movies = {
     obtenerTodos: () => {
       //creamos una cosntante que tiene la URL de nuestra Api
       const urlAPI = 'https://pracprof2023-af4f.restdb.io/rest/peliculas?apikey=6467b09a0b60fc42f4e197fa';
+      //
       //creamos una constante que tendra una referencia directa con el DIV contenedor peliculas y nos permitira cargar de contenidos 
       const divContenedorPeliculas = document.querySelector('#contenedorPeliculas');
       //creamos una variable vacia que contendra todo el codigo html que vamos a insertar 
@@ -30,21 +31,31 @@ const movies = {
         })
     },
     agregarNuevaPelicula:() => {
+
       const urlAPI = 'https://pracprof2023-af4f.restdb.io/rest/peliculas?apikey=6467b09a0b60fc42f4e197fa';
+      //'https://pracprof2023-af4f.restdb.io/rest/peliculas?apikey=6467b09a0b60fc42f4e197fa';
       
       const txtNombre=document.getElementById
-      ("#txtNombre")
+      ("txtNombre");
+      alert(`Agregando la pelicula:${txtNombre.value}`);
       const txtGenero=document.getElementById
-      ("#txtGenero")
+      ("txtGenero");
       const txtDuracion=document.getElementById
-      ("#txtDuracion")
+      ("txtDuracion");
       const txtTrailer_url=document.getElementById
-      ("#txttrailer_url")
+      ("txtTrailer_url");
       const txtSinopsis=document.getElementById
-      ("#txtSinopsis")
+      ("txtSinopsis");
       const txtPortada_url=document.getElementById
-      ("#txtPortadaURL")
-      const nuevaPeli = {"nombre": txtNombre,"genero":txtGenero,"duracion":txtDuracion,"trailer_url": txtTrailer_url,"sinopsis":txtSinopsis,"portada_url":txtPortada_url};
+      ("txtPortadaURL");
+      const nuevaPeli = {
+        "nombre": txtNombre.value,
+        "genero":txtGenero.value,
+        "duracion":txtDuracion.value,
+        "trailer_url": txtTrailer_Url.value,
+        "sinopsis":txtSinopsis.value,
+        "portada_url":txtPortada_Url.value
+      };
       fetch(urlAPI, {
       method: 'POST',
       headers: {
@@ -53,7 +64,9 @@ const movies = {
       body: JSON.stringify(nuevaPeli)
       })  
       .then(response => {
-        return movies.obtenerTodos();
+        console.log(nuevaPeli);
+        window.location.href="index.html";
+        //return movies.obtenerTodos();
       });
     },
     eliminarPelicula:(idPeliculaBorrar,nombrePeliculaBorrar) =>{
@@ -84,4 +97,4 @@ const movies = {
       })
     }
   };
-  movies.obtenerTodos();
+  //movies.obtenerTodos();
