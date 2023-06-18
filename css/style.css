@@ -67,3 +67,8 @@ button{
     cursor: pointer;
     bottom: unset;
 }
+.section{
+    position: relative;
+    top:-78%;
+    
+}
