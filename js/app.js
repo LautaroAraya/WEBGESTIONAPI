@@ -22,8 +22,8 @@ const movies = {
                     <img src="${peli.portada_url}" alt="${peli.nombre}" class="img-thumbnail">
                   </a>
                   <details class="title"><summary>${peli.nombre}</summary>
-                  <p>Sinopsis:${peli.sinopsis}</p>
-                  <p>Duracion:${peli.duracion}min</p>
+                  <p>Sinopsis: ${peli.sinopsis}</p>
+                  <p>Duracion: ${peli.duracion} min</p>
                   <a href="#" onClick="movies.eliminarPelicula('${peli._id}','${peli.nombre}');">Eliminar</a>
                   </details>
               </div>`;
@@ -38,7 +38,7 @@ const movies = {
       
       const txtNombre=document.getElementById
       ("txtNombre");
-      alert(`Agregando la pelicula:${txtNombre.value}`);
+      alert(`Agregando la pelicula: ${txtNombre.value}`);
       const txtGenero=document.getElementById
       ("txtGenero");
       const txtDuracion=document.getElementById
