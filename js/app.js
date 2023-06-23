@@ -25,6 +25,7 @@ const movies = {
                   <p>Sinopsis: ${peli.sinopsis}</p>
                   <p>Duracion: ${peli.duracion} min</p>
                   <a href="#" onClick="movies.eliminarPelicula('${peli._id}','${peli.nombre}');">Eliminar</a>
+                  <a href="#" onClick="movies.editarPelicula('${peli._id}');">Editar</a>
                   </details>
               </div>`;
           }
@@ -32,13 +33,26 @@ const movies = {
         })
     },
     agregarNuevaPelicula:() => {
+      const txtIdPelicula=document.getElementById('txtIdPelicula');
+      let urlAPI='';
+      let methodAPI='';
+      if(txtIdPelicula.value===''){
+        urlAPI = 'https://pracprof2023-af4f.restdb.io/rest/peliculas?apikey=6467b09a0b60fc42f4e197fa';
+        methodAPI='POST';
+      }
+      else
+      {
+        urlAPI = `https://pracprof2023-af4f.restdb.io/rest/peliculas/${txtIdPelicula.value}?apikey=6467b09a0b60fc42f4e197fa`;
+        methodAPI='PUT';
+      }
 
-      const urlAPI = 'https://pracprof2023-af4f.restdb.io/rest/peliculas?apikey=6467b09a0b60fc42f4e197fa';
+
+      //const urlAPI = 'https://pracprof2023-af4f.restdb.io/rest/peliculas?apikey=6467b09a0b60fc42f4e197fa';
       //'https://pracprof2023-af4f.restdb.io/rest/peliculas?apikey=6467b09a0b60fc42f4e197fa';
       
       const txtNombre=document.getElementById
       ("txtNombre");
-      alert(`Agregando la pelicula: ${txtNombre.value}`);
+      //alert(`Agregando la pelicula: ${txtNombre.value}`);
       const txtGenero=document.getElementById
       ("txtGenero");
       const txtDuracion=document.getElementById
@@ -48,17 +62,17 @@ const movies = {
       const txtSinopsis=document.getElementById
       ("txtSinopsis");
       const txtPortada_url=document.getElementById
-      ("txtPortadaURL");
+      ("txtPortada_url");
       const nuevaPeli = {
         "nombre": txtNombre.value,
         "genero":txtGenero.value,
         "duracion":txtDuracion.value,
-        "trailer_url": txtTrailer_Url.value,
+        "trailer_url": txtTrailer_url.value,
         "sinopsis":txtSinopsis.value,
-        "portada_url":txtPortada_Url.value
+        "portada_url":txtPortada_url.value
       };
       fetch(urlAPI, {
-      method: 'POST',
+      method: methodAPI,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -71,7 +85,6 @@ const movies = {
       });
     },
     eliminarPelicula:(idPeliculaBorrar,nombrePeliculaBorrar) =>{
-      //alert(`Borrando la pelicula: ${nombrePeliculaBorrar}`);
       Swal.fire({
         title: `Esta seguro que desea eliminar a ${nombrePeliculaBorrar}?`,
         text: "¡No se podrás revertir esto!",
@@ -96,6 +109,27 @@ const movies = {
           )
         }
       })
-    }
-  };
+    },
+    editarPelicula:(idPeliculaEditar)=>{
+      //alert("Editando la pelicula con el ID="+idPeliculaEditar);
+      const urlAPI = `https://pracprof2023-af4f.restdb.io/rest/peliculas/${idPeliculaEditar}?apikey=6467b09a0b60fc42f4e197fa`
+      fetch(urlAPI)
+      .then(res => res.json())
+      .then((datos) => {
+      //console.log(datos)
+      document.getElementById("txtIdPelicula").value=idPeliculaEditar;
+      document.getElementById("txtNombre").value=datos.nombre;
+      document.getElementById("txtGenero").value=datos.genero;
+      document.getElementById("txtDuracion").value=datos.duracion;
+      document.getElementById("txtTrailer_url").value=datos.Trailer_url;
+      document.getElementById("txtSinopsis").value=datos.sinopsis;
+      document.getElementById("txtPortada_url").value=datos.portada_url;
+
+      const ventanaEditar=document.getElementById('agregarEditarModal');
+      var modal = new bootstrap.Modal(ventanaEditar)
+      modal.show();
+      
+      });
+    },
+};
   //movies.obtenerTodos();
